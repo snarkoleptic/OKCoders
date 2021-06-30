@@ -17,7 +17,14 @@ const standupData = [
     }
 ]
 
-const firstDev = standupData[0]
+// const firstDev = standupData[0]
+
+
+function makeEmailTextForAllDevelopers(devData){
+    // const developerTextx = devData.map((data) => makeEmailTextFromDeveloper(data))
+    const developerTexts = devData.map(makeEmailTextFromDeveloper)
+    return developerTexts.join('\n =======')
+}
 
 function makeEmailTextFromDeveloper(devData){
     const devName = devData.developer
@@ -36,9 +43,9 @@ function makeBulletedListOfTasksWithStatus(taskList, status){
     const tasks = taskList.tasks.filter(task => task.status === status)
     const tasksNames = tasks.map(task => task.taskName)
     const tasksNamesHyphens = tasksNames.map(name => '- ' + name)
-    const tasksText = tasksNamesHyphens.join('\n-')
+    const tasksText = tasksNamesHyphens.join('\n')
     return tasksText
 }
 
-const temp = makeEmailTextFromDeveloper(firstDev)
-console.log(temp)
+const emailBodyText = makeEmailTextForAllDevelopers(standupData)
+console.log(emailBodyText)
