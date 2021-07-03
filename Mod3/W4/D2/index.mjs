@@ -1,6 +1,6 @@
-const nodecron = require('node-cron')
+import nodecron from 'node-cron'
+import {sendEmail} from './sendEmail.mjs'
 
-//second, minute, hour, day of month, month, day of week
-nodecron.schedule('0 8 * * *',() => {
-    
+nodecron.schedule('* * * * *',() => {
+    sendEmail().catch(console.log)
 });

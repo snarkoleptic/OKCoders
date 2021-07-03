@@ -1,0 +1,19 @@
+{
+    "tasks":    [{
+            "developer": "bsalsieder",
+            "tasks":[
+                {"taskName":"fix bug", "status":"active"},
+                {"taskName":"new feature", "status":"active"},
+                {"taskName": "curl in a ball and weep", "status":"completed"}
+            ]
+        },
+        {
+            "developer": "snark0leptic",
+            "tasks":[
+                {"taskName":"fix big bug", "status":"active"},
+                {"taskName":"new feature", "status":"complete"},
+                {"taskName": "curl in a ball and weep", "status":"stuck"}
+            ]
+        }
+    ]
+}

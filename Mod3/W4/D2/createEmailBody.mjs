@@ -1,22 +1,4 @@
-const standupData = [
-    {
-        developer: 'bsalsieder',
-        tasks:[
-            {taskName:'fix bug', status:'active'},
-            {taskName:'new feature', status:'active'},
-            {taskName: 'curl in a ball and weep', status:'completed'}
-        ]
-    },
-    {
-        developer: 'snark0leptic',
-        tasks:[
-            {taskName:'fix big bug', status:'active'},
-            {taskName:'new feature', status:'complete'},
-            {taskName: 'curl in a ball and weep', status:'stuck'}
-        ]
-    }
-]
-
+import axios from 'axios'
 
 function makeEmailTextForAllDevelopers(devData){
     const developerTexts = devData.map(makeEmailTextFromDeveloper)
@@ -44,5 +26,8 @@ function makeBulletedListOfTasksWithStatus(taskList, status){
     return tasksText
 }
 
-const emailBodyText = makeEmailTextForAllDevelopers(standupData)
-console.log(emailBodyText)
+export async function emailBody(){
+    const resp = await axios.get('http://localhost:3000/tasks')
+    const emailBodyText = makeEmailTextForAllDevelopers(resp)
+    return emailBodyText
+}
