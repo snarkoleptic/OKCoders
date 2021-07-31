@@ -1,0 +1,10 @@
+What the heck do you want to do with this weather forecast app?
+
+START
+    Welcome page: choose 3/5/7 day forecast
+        - click button for day you want -> forecast page with day window available
+    Forecast page: show daily forecast as cards, local news style
+        - Click on a card -> zoom in view of that day's forecast
+        - Link to get back to the Welcome/Change Days Page
+    Zoomed in to single Day Forecast Focus
+        - Dismiss zoom to go back to forecast page.
