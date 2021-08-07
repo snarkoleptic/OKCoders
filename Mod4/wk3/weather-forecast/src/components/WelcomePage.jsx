@@ -1,8 +1,7 @@
-import {useState} from 'react'
+import { SCREENS } from "../constants"
 
 export default function WelcomePage(props) {
     console.log(props)
-    // const forecastDays = props
     const selections = [
         {label: "3 Days", value: 3},
         {label: "5 Days", value: 5},
@@ -11,7 +10,10 @@ export default function WelcomePage(props) {
     const forecastButtons = selections.map((item) => (
         <button 
             id={item.value}
-            onClick={() => props.setForecastDays(item.value)}
+            onClick={() => {
+                props.setForecastDays(item.value)
+                props.setActiveScreen(SCREENS.ForecastPage)
+            }}
         >
             {item.label}
         </button>
@@ -20,10 +22,8 @@ export default function WelcomePage(props) {
 
     const layout = (
         <div style={{backgroundColor:'silver'}}>
-            <h2>Official OKCoders Weather Forecast App</h2>
             {forecastButtons}
-            {/* <p>{forecastDays}</p> */}
         </div>
     )
     return layout
-}
+};

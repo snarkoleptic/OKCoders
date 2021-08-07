@@ -1,9 +1,25 @@
+import { SCREENS} from "../constants";
+import {getForecastData} from "../simulateDatabase"
+
+import {ForecastCard} from "./ForecastCard"
+
 export default function ForecastPage(props) {
-    const layout = (
-        <div style={{backgroundColor:'limegreen'}}>
-            <p>I am a forecast page.</p>
+    const forecastData = getForecastData(props.forecastDays)
+
+
+
+    const returnWelcome = (
+        <div onClick={() => {props.setActiveScreen(SCREENS.WelcomePage)}}>
+            <p>Return to Welcome Page</p>
         </div>
     )
 
-        return layout
+    const layout = (
+        <div>
+            {returnWelcome}
+            <ForecastCard data={forecastData[0]} />
+        </div>
+    );
+
+    return layout;
 }
