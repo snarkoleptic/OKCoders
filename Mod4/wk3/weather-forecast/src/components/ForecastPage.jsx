@@ -1,23 +1,25 @@
-import { SCREENS} from "../constants";
-import {getForecastData} from "../simulateDatabase"
+import {SCREENS} from '../constants';
+import {getForecastData} from '../simulateDatabase';
 
-import {ForecastCard} from "./ForecastCard"
+import CardGroup from 'react-bootstrap/CardGroup'
+
+import ForecastCard from './ForecastCard';
 
 export default function ForecastPage(props) {
-    const forecastData = getForecastData(props.forecastDays)
-
-
-
     const returnWelcome = (
-        <div onClick={() => {props.setActiveScreen(SCREENS.WelcomePage)}}>
+        <div 
+            variant = "link"
+            onClick={() => {props.setActiveScreen(SCREENS.WelcomePage)}}>
             <p>Return to Welcome Page</p>
         </div>
-    )
+    );
+    const forecastData = getForecastData(props.forecastDays);
+    const dayCards = forecastData.map((item) => (<ForecastCard data={item}/>));
 
     const layout = (
         <div>
             {returnWelcome}
-            <ForecastCard data={forecastData[0]} />
+            <CardGroup>{dayCards}</CardGroup>
         </div>
     );
 
