@@ -2,53 +2,39 @@
 const express = require('express');
 const app = express();
 
-const port = 3000;
-// do some stuff
+const port = 4000;
 
 app.get('/', (req, res) =>{
-    res.send('Hello World!');
+    res.send("Hello, world!");
 });
 
-app.get('/users', (req,res) =>{
-    res.json({
-        success:true,
-        data: [
-            {
-                name: "Bryan Salsieder",
-                id: 1,
-                email: "bsalsieder@gmail.com"
-            },
-            {
-                name: "Rik Cottontree",
-                id: 2,
-                email: "aegisofsnow@gmail.com"
-            }
-        ]
-    });
-});
+const testData = [
+    {
+        name: "Bryan Salsieder",
+        id: 1,
+        email: "bsalsieder@gmail.com"
+    },
+    {
+        name: "Rik Cottontree",
+        id: 2,
+        email: "aegisofsnow@gmail.com"
+    }
+]
 
-app.get('/users/:id', (req,res) =>{
+app.get('/users/:userId', (req,res) =>{
     let userData = null;
     const userID = req.params.userID;
 
-    if (userID === "1"){
-        userData = {                
-            name: "Bryan Salsieder",
-            id: 1,
-            email: "bsalsieder@gmail.com"
-        }
+    if (userID === '1'){
+        userData = testData[0];
     }
 
-    if (userID === "2"){
-        userData = {                
-            name: "Rik Cottontree",
-            id: 2,
-            email: "aegisofsnow@gmail.com"
-        }
+    if (userID === '2'){
+        userData = testData[1];
     }
 
     if (userID === null){
-        res.status('404').send();
+        res.status(404).send();
         return;
     }
 
@@ -58,11 +44,20 @@ app.get('/users/:id', (req,res) =>{
     });
 });
 
-app.post('', (req, res) =>{
-// Interact with request sent
-// Receive data 
-// Validate user authority.
+app.post('/users', (req, res) =>{
+// Receive data
+    const data = req.body;
+// Validate data
+    if (!data.name || !data.email){
+        res.status(422).send();
+        return;    
+    }
 //Send back response
+    let returnData = {
+        id:3,
+        ...data,
+    };
+    res.status(201).send(returnData);
 });
 
 /*
