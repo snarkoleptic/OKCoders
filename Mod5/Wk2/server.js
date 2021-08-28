@@ -1,12 +1,16 @@
 // import modules and define variables
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+const { User } = require('./schemas/schemas');
 
-const port = 4000;
+main().catch((err) => console.log(err));
 
-app.get('/', (req, res) =>{
-    res.send("Hello, world!");
-});
+async function main(){
+    await mongoose.connect('mongodb://localhost:27017/okcoders');
+}
+
+
 
 const testData = [
     {
@@ -20,6 +24,16 @@ const testData = [
         email: "aegisofsnow@gmail.com"
     }
 ]
+
+const port = 5000;
+
+// Middlewares
+app.use(express.json());
+
+// Routes
+app.get('/', (req, res) =>{
+    res.send("Hello, world!");
+});
 
 app.get('/users/:userId', (req,res) =>{
     let userData = null;
