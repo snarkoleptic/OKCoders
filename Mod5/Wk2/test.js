@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const { User } = require('./schemas/schemas');
+const dotenv = require('dotenv');
+dotenv.config();
+console.log(process.env.DB_URI);
 
 // Config/init
 main()
