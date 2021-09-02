@@ -4,10 +4,9 @@ const mongoose = require("mongoose");
 const usersSchema = new mongoose.Schema({
     name: String,
     email: String,
-    is_admin: Boolean
 });
 
-//Compile model
+//Compile model, User is the Collection name
 const User = mongoose.model('User', usersSchema);
 //Export model
 module.exports = {

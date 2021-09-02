@@ -3,27 +3,28 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const { User } = require('./schemas/schemas');
+const dotenv = require('dotenv');
+dotenv.config();
 
 main().catch((err) => console.log(err));
 
 async function main(){
-    await mongoose.connect('mongodb://localhost:27017/okcoders');
+    // await mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}/?authSource=admin`);
+    await mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}/?authSource=admin`);
 }
 
-
-
-const testData = [
-    {
-        name: "Bryan Salsieder",
-        id: 1,
-        email: "bsalsieder@gmail.com"
-    },
-    {
-        name: "Rik Cottontree",
-        id: 2,
-        email: "aegisofsnow@gmail.com"
-    }
-]
+// const testData = [
+//     {
+//         name: "Bryan Salsieder",
+//         id: 1,
+//         email: "bsalsieder@gmail.com"
+//     },
+//     {
+//         name: "Rik Cottontree",
+//         id: 2,
+//         email: "aegisofsnow@gmail.com"
+//     }
+// ]
 
 const port = 5000;
 
@@ -31,34 +32,36 @@ const port = 5000;
 app.use(express.json());
 
 // Routes
-app.get('/', (req, res) =>{
+app.get('/', async (req, res) =>{
     res.send("Hello, world!");
 });
 
-app.get('/users/:userId', (req,res) =>{
-    let userData = null;
-    const userID = req.params.userID;
-
-    if (userID === '1'){
-        userData = testData[0];
-    }
-
-    if (userID === '2'){
-        userData = testData[1];
-    }
-
-    if (userID === null){
-        res.status(404).send();
-        return;
-    }
-
+app.get('/users', async (req, res) =>{
+    const users = await User.find({}).select('_id name email');
+    
     res.json({
         success:true,
-        data: userData
+        users,
     });
 });
 
-app.post('/users', (req, res) =>{
+app.get('/users/:userId', async (req,res) =>{
+    try {
+        const userId = req.params.userId;
+        const user = await User.findById(userId).select('_id name email');
+        
+        res.json({
+            success:true,
+            user,
+        });
+
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+});
+
+app.post('/users', async (req, res) =>{
 // Receive data
     const data = req.body;
 // Validate data
@@ -73,6 +76,11 @@ app.post('/users', (req, res) =>{
     };
     res.status(201).send(returnData);
 });
+
+app.put('/users', async (req, res) =>{});
+app.patch('/users', async (req, res) =>{});
+app.delete('/users', async (req, res) =>{});
+
 
 /*
 C - Create - POST
