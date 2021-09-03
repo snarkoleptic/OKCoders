@@ -10,7 +10,7 @@ main().catch((err) => console.log(err));
 
 async function main(){
     // await mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}/?authSource=admin`);
-    await mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}/?authSource=admin`);
+    await mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`);
 }
 
 // const testData = [
@@ -77,9 +77,9 @@ app.post('/users', async (req, res) =>{
     res.status(201).send(returnData);
 });
 
-app.put('/users', async (req, res) =>{});
-app.patch('/users', async (req, res) =>{});
-app.delete('/users', async (req, res) =>{});
+// app.put('/users', async (req, res) =>{});
+// app.patch('/users', async (req, res) =>{});
+// app.delete('/users', async (req, res) =>{});
 
 
 /*

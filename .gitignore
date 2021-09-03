@@ -1,0 +1,17 @@
+
+Mod5/Wk2/node_modules/mongoose/dist/browser.umd.js
+Mod5/Wk2/node_modules/mongoose/index.d.ts
+Mod5/Wk2/node_modules/mongoose/lib/connection.js
+Mod5/Wk2/node_modules/mongoose/lib/document.js
+Mod5/Wk2/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js
+Mod5/Wk2/node_modules/mongoose/lib/helpers/common.js
+Mod5/Wk2/node_modules/mongoose/lib/model.js
+Mod5/Wk2/node_modules/mongoose/lib/query.js
+Mod5/Wk2/node_modules/mongoose/lib/schema.js
+Mod5/Wk2/node_modules/mongoose/package.json
+Mod5/Wk2/node_modules/mongoose/tools/auth.js
+Mod5/Wk2/node_modules/mongoose/tools/repl.js
+Mod5/Wk2/node_modules/mongoose/tools/sharded.js
+Mod5/Wk2/node_modules/mpath/History.md
+Mod5/Wk2/node_modules/mpath/lib/index.js
+Mod5/Wk2/node_modules/mpath/package.json
