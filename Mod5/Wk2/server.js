@@ -77,8 +77,8 @@ app.post('/users', async (req, res) =>{
     res.status(201).send(returnData);
 });
 
-// app.put('/users', async (req, res) =>{});
-// app.patch('/users', async (req, res) =>{});
+// app.put('/users', async (req, res) =>{}); Full replacement of whole document.
+// app.patch('/users', async (req, res) =>{}); Patial replacement of variables.
 // app.delete('/users', async (req, res) =>{});
 
 
